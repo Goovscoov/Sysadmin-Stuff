@@ -25,7 +25,7 @@ else
 			passwd -e ${USERNAME} >/dev/null 2>&1
 			echo "Account created successfully:
 		      		Username:		${USERNAME} 
-		      		Full name:		${COMMENT}
+		      		Real name:		${COMMENT}
 		      		Password:		${PASSWORD}  #optional hidden in output
 		    		created on:		$(date) 
 		      		created on machine:	$(hostname)"
