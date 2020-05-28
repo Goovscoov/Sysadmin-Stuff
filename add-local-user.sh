@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#simple script to create useraccounts
+
 if [[ "${UID}" -ne 0 ]]
 then
 	echo "Your username is $(id -un) and your UID is ${UID}. You must be root te execute this script"
