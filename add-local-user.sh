@@ -24,7 +24,7 @@ else
 			echo "Account created successfully:
 		      		Username:		${USERNAME} 
 		      		Full name:		${COMMENT}
-		      		Password:		${PASSWORD} 
+		      		Password:		${PASSWORD}  #optional hidden in output
 		    		created on:		$(date) 
 		      		created on machine:	$(hostname)"
 			exit 1
