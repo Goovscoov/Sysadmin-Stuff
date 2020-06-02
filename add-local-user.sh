@@ -14,9 +14,9 @@ then
 else
 	for USERNAME in "${@}"
 	do
-		useradd -c "${USERNAME}" -m "${USERNAME}" >/dev/null 2>&1
-		echo "${PASSWORD}" | passwd --stdin "${USERNAME}" >/dev/null 2>&1
-		passwd -e "${USERNAME}" >/dev/null 2>&1
+		useradd -c "${USERNAME}" -m "${USERNAME}" &> /dev/null
+		echo "${PASSWORD}" | passwd --stdin "${USERNAME}" &> /dev/null
+		passwd -e "${USERNAME}" &> /dev/null 
 
 		if [[ "${?}" -ne  0 ]]
 		then
