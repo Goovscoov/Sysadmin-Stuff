@@ -1,41 +1,33 @@
 #!/bin/bash
+# If the user doesn't supply at least one argument, then give them help.
 
-#simple script to create useraccounts
+PASSWORD=$(date +%s%N | sha256sum | head -c48)
 
 if [[ "${UID}" -ne 0 ]]
 then
 	echo "Your username is $(id -un) and your UID is ${UID}. You must be root te execute this script"
 	exit 1
+elif [[ "${#}" -lt 1 ]]
+then
+	echo "Usage: ${0} USERNAME [USERNAME]..."
+	echo "You must specify a username and full name (comment) in order to create a account"
 else
-	read -p "Enter the username for this new user: " USERNAME 
-	read -p "Enter the real name for this new user: " COMMENT
-	useradd -c "${COMMENT}" -m ${USERNAME} >/dev/null 2>&1
-	if [[ "${?}" -ne 0 ]]
-	then
-		echo "This account could not be created"
-		exit 1
-	else
-		read -p "Enter the password for this new user: " PASSWORD
-		echo ${PASSWORD} | passwd --stdin ${USERNAME} >/dev/null 2>&1
+	for USERNAME in "${@}"
+	do
+		useradd -c "${USERNAME}" -m "${USERNAME}" >/dev/null 2>&1
+		echo "${PASSWORD}" | passwd --stdin "${USERNAME}" >/dev/null 2>&1
+		passwd -e "${USERNAME}" >/dev/null 2>&1
+
 		if [[ "${?}" -ne  0 ]]
 		then
-			echo "The password for this account could not be set"
+			echo "Account creation for the account "${USERNAME}" was not successfull"
 			exit 1
-		else
-			passwd -e ${USERNAME} >/dev/null 2>&1
+		else	
 			echo "Account created successfully:
 		      		Username:		${USERNAME} 
-		      		Real name:		${COMMENT}
-		      		Password:		${PASSWORD}  #optional hidden in output
+		      		Password:		${PASSWORD} 
 		    		created on:		$(date) 
 		      		created on machine:	$(hostname)"
-			exit 1
 		fi
-
-	fi
-fi 
-
-
-
-
-
+	done
+fi
