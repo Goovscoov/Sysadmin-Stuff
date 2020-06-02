@@ -25,7 +25,7 @@ else
 		else	
 			echo "Account created successfully:
 		      		Username:		${USERNAME} 
-		      		Password:		${PASSWORD} 
+		      		Password:		${PASSWORD} #show optional
 		    		created on:		$(date) 
 		      		created on machine:	$(hostname)"
 		fi
