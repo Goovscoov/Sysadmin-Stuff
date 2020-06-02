@@ -10,7 +10,7 @@ then
 elif [[ "${#}" -lt 1 ]]
 then
 	echo "Usage: ${0} USERNAME [USERNAME]..."
-	echo "You must specify a username and full name (comment) in order to create a account"
+	echo "You must specify at least one username in order to create a account"
 else
 	for USERNAME in "${@}"
 	do
