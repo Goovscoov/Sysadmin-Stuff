@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Script that automates to disable useraccounts
-#This script also provides the capabilities to delete a useraccount and archive the homefolder.
+#This script also provides the capabilities to delete an useraccount and archive the homefolder.
 
 #usage output function
 usage() {
@@ -16,13 +16,13 @@ echo "
 exit 1
 }
 
-#command execution check
+#command execution check function
 command_check() {
 if [[ "${?}" -ne 0 ]]
 then
 	echo "The command did not executed properly" >&2
         exit 1
-      fi
+fi
 }
 
 
@@ -47,13 +47,13 @@ done
 # Remove the options while leaving the remaining arguments.
 shift "$(( OPTIND - 1 ))"
 
-# If the user doesn't supply at least one argument, give them help.
+# If the user doesn't supply at least one argument, display usage.
 if [[ "${#}" -lt 1 ]]
 then
   usage
 fi
 
-# Loop through all the usernames supplied as arguments.
+# Execute supplied arguments on provided user accounts.
 for USERNAME in "${@}"
 do
 	echo "Processing user: ${USERNAME}"
@@ -100,7 +100,7 @@ do
 	   	fi
 	fi 
 
-	# -d option. Delete a user.	
+	# -d and -r option. Delete a user or if no option disable the user.	
 	if [[ "${DELETE_USER}" = 'true' ]]
 	then
 		userdel ${REMOVE_OPTION} ${USERNAME}
