@@ -2,6 +2,7 @@
 
 #Script that automates to disable useraccounts
 #This script also provides the capabilities to delete an useraccount and archive the homefolder.
+#test
 
 #usage output function
 usage() {
