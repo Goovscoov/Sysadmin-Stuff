@@ -2,9 +2,8 @@
 
 #Script that automates to disable useraccounts
 #This script also provides the capabilities to delete an useraccount and archive the homefolder.
-#test
 
-#usage output function
+#usage message
 usage() {
 echo "Script to disable or delete a user account(s)."
 echo "Script provides options to remove or archive homedir of specified user account."
